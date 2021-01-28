@@ -1,6 +1,7 @@
 #! pyhton3
 
 import imapclient, pyzmail, pprint, imaplib
+from datetime import date
 
 # Update the number of bytes to use in the program
 imaplib._MAXLINE = 10000000
@@ -18,7 +19,7 @@ imapObj.login ("darialternative@gmail.com", "AliciaParadoxa1999x3")
 imapObj.select_folder ("INBOX", readonly=True)
 
 # Seach emails (get uid: unique identifiers)
-email_uids = imapObj.search ('ALL')
+email_uids = imapObj.search (["ON", date(2021, 1, 26)])
 
 # Control variables
 max_emails = 100
@@ -33,20 +34,20 @@ for uid_index in range(len(email_uids)-1, 0, -1):
     # Process email as pzmail object
     message = pyzmail.PyzMessage.factory(rawMessages[email_uids[uid_index]][b'BODY[]'])
 
+    # Get email information
     subject = message.get_subject()
     from_email = message.get_addresses('from')[0]
     to_email = message.get_addresses('to')[0]
     body = message.text_part.get_payload().decode(message.text_part.charset)
 
-    if "alerta" in str(subject).lower(): 
 
-        # get email information
-        print ("\n")
-        print(subject)
-        print(from_email)
-        print(to_email)
-        # print(body)
-        print ("\n")
+    # print email information
+    print ("\n")
+    print(subject)
+    print(from_email)
+    print(to_email)
+    # print(body)
+    print ("\n")
 
     # Limit the number of emails
     total_emails += 1
