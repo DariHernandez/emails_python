@@ -38,7 +38,7 @@ for uid_index in range(len(email_uids)-1, 0, -1):
     to_email = message.get_addresses('to')[0]
     body = message.text_part.get_payload().decode(message.text_part.charset)
 
-    if from_email[0] == "Dari Developer": 
+    if "alerta" in str(subject).lower(): 
 
         # get email information
         print ("\n")
