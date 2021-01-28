@@ -1,6 +1,6 @@
 #! pyhton3
 
-import imapclient, pyzmail, imaplib
+import imapclient, pyzmail, pprint, imaplib
 
 # Update the number of bytes to use in the program
 imaplib._MAXLINE = 10000000
@@ -11,14 +11,17 @@ imapObj = imapclient.IMAPClient ("imap.gmail.com", ssl=True)
 # Login to email account
 imapObj.login ("darialternative@gmail.com", "AliciaParadoxa1999x3")
 
+# Print list of email folders
+pprint.pprint(imapObj.list_folders())
+
 # Use inbox folder
-imapObj.select_folder ("INBOX", readonly=True)
+imapObj.select_folder ("[Gmail]/Papelera", readonly=True)
 
 # Seach emails (get uid: unique identifiers)
 email_uids = imapObj.search ('ALL')
 
 # Control variables
-max_emails = 10
+max_emails = 2
 total_emails = 0
 
 # loop for each email identifier
@@ -34,7 +37,7 @@ for uid_index in range(len(email_uids)-1, 0, -1):
     print ("\n")
     print(message.get_subject())
     print("{}: {}".format(message.get_addresses('from')[0][0], message.get_addresses('from')[0][1]))
-    # print(message.get_addresses('to')[0])
+    # print(message.get_addresses('to'))
     # print(message.text_part.get_payload().decode(message.text_part.charset))
     print ("\n")
 
