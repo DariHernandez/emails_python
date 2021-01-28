@@ -19,7 +19,7 @@ imapObj.login ("darialternative@gmail.com", "AliciaParadoxa1999x3")
 imapObj.select_folder ("INBOX", readonly=True)
 
 # Seach emails (get uid: unique identifiers)
-email_uids = imapObj.search (["ON", date(2021, 1, 26)])
+email_uids = imapObj.search ('SUBJECT "alerta"')
 
 # Control variables
 max_emails = 100
