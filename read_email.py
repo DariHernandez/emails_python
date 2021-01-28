@@ -14,6 +14,10 @@ imapObj.select_folder ("INBOX", readonly=True)
 # Seach emails (get uid: unique identifiers)
 email_uids = imapObj.search ('ALL')
 
+# Control variables
+max_emails = 10
+total_emails = 0
+
 # loop for each email identifier
 for uid_index in range(len(email_uids)-1, 0, -1): 
 
@@ -30,6 +34,11 @@ for uid_index in range(len(email_uids)-1, 0, -1):
     # print(message.get_addresses('to')[0])
     # print(message.text_part.get_payload().decode(message.text_part.charset))
     print ("\n")
+
+    # Limit the number of emails
+    total_emails += 1
+    if total_emails == max_emails: 
+        break
 
 imapObj.logout()
 
