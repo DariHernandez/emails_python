@@ -19,7 +19,7 @@ imapObj.login ("darialternative@gmail.com", "AliciaParadoxa1999x3")
 imapObj.select_folder ("INBOX", readonly=True)
 
 # Seach emails (get uid: unique identifiers)
-email_uids = imapObj.search ('UNSEEN')
+email_uids = imapObj.search ('LARGER 100000')
 
 # Control variables
 max_emails = 100
