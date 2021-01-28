@@ -14,23 +14,22 @@ imapObj.select_folder ("INBOX", readonly=True)
 # Seach emails (get uid: unique identifiers)
 email_uids = imapObj.search ('ALL')
 
-# Print all email uid
-# print (email_uids)
+# loop for each email identifier
+for uid in email_uids: 
 
-# Get the las uid 
-last_email_uid = email_uids.pop()
+    # Get the raw content of the last email
+    rawMessages = imapObj.fetch([uid], ['BODY[]', 'FLAGS'])
 
-# Get the raw content of the last email
-rawMessages = imapObj.fetch([last_email_uid], ['BODY[]', 'FLAGS'])
+    # Process email as pzmail object
+    message = pyzmail.PyzMessage.factory(rawMessages[uid][b'BODY[]'])
 
-# Process email as pzmail object
-message = pyzmail.PyzMessage.factory(rawMessages[last_email_uid][b'BODY[]'])
-
-# get email information
-print(message.get_subject())
-print(message.get_addresses('from'))
-print(message.get_addresses('to'))
-print(message.text_part.get_payload().decode(message.text_part.charset))
+    # get email information
+    print ("\n")
+    print(message.get_subject())
+    print("{}: {}".format(message.get_addresses('from')[0][0], message.get_addresses('from')[0][1]))
+    # print(message.get_addresses('to')[0])
+    # print(message.text_part.get_payload().decode(message.text_part.charset))
+    print ("\n")
 
 imapObj.logout()
 
