@@ -15,13 +15,13 @@ imapObj.select_folder ("INBOX", readonly=True)
 email_uids = imapObj.search ('ALL')
 
 # loop for each email identifier
-for uid in email_uids: 
+for uid_index in range(len(email_uids)-1, 0, -1): 
 
     # Get the raw content of the last email
-    rawMessages = imapObj.fetch([uid], ['BODY[]', 'FLAGS'])
+    rawMessages = imapObj.fetch([email_uids[uid_index]], ['BODY[]', 'FLAGS'])
 
     # Process email as pzmail object
-    message = pyzmail.PyzMessage.factory(rawMessages[uid][b'BODY[]'])
+    message = pyzmail.PyzMessage.factory(rawMessages[email_uids[uid_index]][b'BODY[]'])
 
     # get email information
     print ("\n")
