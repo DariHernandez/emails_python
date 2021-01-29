@@ -52,6 +52,18 @@ for uid_index in range(len(email_uids)-1, 0, -1):
             file_name = part.get_filename()
             print ("- {}".format(file_name))
 
+            # Verify the name of the file
+            if file_name: 
+
+                # Create path of file
+                file_path = os.path.join (folder_download, file_name)
+                
+                # Save file
+                file_obj = open (file_path, "wb")
+                file_obj.write (part.get_payload(decode=True))
+                file_obj.close()
+
+           
     # Limit the number of emails
     total_emails += 1
     if total_emails == max_emails: 
