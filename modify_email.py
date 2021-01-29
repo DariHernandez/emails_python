@@ -66,7 +66,13 @@ print ("\n")
 # imapObj.add_flags ([last_email], "\Deleted")
 # imapObj.remove_flags ([last_email], "\Deleted")
 
-print ("Flag updated")
+# print ("Flag updated")
+
+
+# Move email to specific folder
+imapObj.move ([last_email], "[Gmail]/Papelera")
+
+print ("Email moved")
 
 imapObj.logout()
 
