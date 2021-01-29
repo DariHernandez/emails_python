@@ -41,6 +41,8 @@ for email, name in to_emails.items():
     template_path = "python emails 8 | Enviar correos HTML |/email_template_simple.html"
     template_file = open(template_path, "r")
     html_part = template_file.read()
+    html_part = html_part.replace ("[name]", name)
+
 
     # Crate the Mime parts of the email
     part1 = MIMEText (text_part, "plain")
