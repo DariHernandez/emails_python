@@ -1,6 +1,6 @@
 #! pyhton3
 
-import imapclient, pyzmail, imaplib
+import imapclient, pyzmail, imaplib, bs4
 
 # Update the number of bytes to use in the program
 imaplib._MAXLINE = 10000000
@@ -34,7 +34,17 @@ print("{}: {}".format(message.get_addresses('from')[0][0], message.get_addresses
 
 # Get the html part of the email
 html = message.html_part.get_payload().decode(message.html_part.charset)
-print (html)
+soup = bs4.BeautifulSoup (html, "html.parser")
+
+# get tracking number 
+num_seguimiento = soup.select ("b:nth-child(5)")[0]
+# num_seguimiento = soup.select ("p ~ b")[0]
+# num_seguimiento = soup.select ("main b")[1]
+
+
+# print (html)
+# print (num_seguimiento)
+print (num_seguimiento.getText())
 
 print ("\n")
 
