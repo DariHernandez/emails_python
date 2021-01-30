@@ -1,5 +1,10 @@
 #! python3
 
+"""
+Code for my youtube course: Python emails.
+Youtube chanel (in spanish): https://www.youtube.com/channel/UCXWTlKzN_udf9LGqlDsuByg
+"""
+
 import smtplib
 
 # List of recipents
@@ -9,22 +14,22 @@ to_emails = {
     "darialternative@aol.com": "Alberto"
 }
 
-# Conectarse al servidor y puerto
+# Connect to server and port
 smtpObj = smtplib.SMTP ('smtp.gmail.com', 587)
 
 # Send hello to smtp
 smtpObj.ehlo()
 
-# Activar método de encriptación
+# Active encriptation
 smtpObj.starttls()
 
-# Iniciar sesión
-smtpObj.login('darialternative@gmail.com', 'AliciaParadoxa1999x3')
+# login
+smtpObj.login ("your_email@gmail.com", "your_password")
 
 # Loop for each email in list
 for email, name in to_emails.items(): 
 
-    # Enviar correo
+    # Send email
     smtpObj.sendmail('darialternative@gmail.com', 
                         email, 
                         'Subject: Email example\n\nGood morning {} This is an example email'.format(name))
@@ -32,5 +37,5 @@ for email, name in to_emails.items():
     # Confirmation message
     print ("Correo enviado a {}".format (name))
 
-# Cerrar conexión
+# Close connection
 smtpObj.quit()

@@ -1,5 +1,10 @@
 #! pyhton3
 
+"""
+Code for my youtube course: Python emails.
+Youtube chanel (in spanish): https://www.youtube.com/channel/UCXWTlKzN_udf9LGqlDsuByg
+"""
+
 import imapclient, pyzmail, pprint, imaplib
 from datetime import date
 
@@ -10,7 +15,7 @@ imaplib._MAXLINE = 10000000
 imapObj = imapclient.IMAPClient ("imap.gmail.com", ssl=True)
 
 # Login to email account
-imapObj.login ("darialternative@gmail.com", "AliciaParadoxa1999x3")
+imapObj.login ("your_email@gmail.com", "your_password")
 
 # Print list of email folders
 # pprint.pprint(imapObj.list_folders())

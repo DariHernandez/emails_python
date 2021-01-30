@@ -1,5 +1,10 @@
 #! python3
 
+"""
+Code for my youtube course: Python emails.
+Youtube chanel (in spanish): https://www.youtube.com/channel/UCXWTlKzN_udf9LGqlDsuByg
+"""
+
 import smtplib, os
 from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
@@ -14,21 +19,21 @@ to_emails = {
 }
 
 file_list = [
-    "python emails 6 | Adjuntar archivos a correos | email.mime/file.pdf",
-    "python emails 6 | Adjuntar archivos a correos | email.mime/img.jpg"
+    "file.pdf",
+    "img.jpg"
 ]
 
-# Conectarse al servidor y puerto
+# Contect to smtp server and port
 smtpObj = smtplib.SMTP ('smtp.gmail.com', 587)
 
 # Send hello to smtp
 smtpObj.ehlo()
 
-# Activar método de encriptación
+# Active encriptation
 smtpObj.starttls()
 
-# Iniciar sesión
-smtpObj.login('darialternative@gmail.com', 'AliciaParadoxa1999x3')
+# Login
+smtpObj.login ("your_email@gmail.com", "your_password")
 
 # Loop for each email in list
 for email, name in to_emails.items(): 
@@ -58,7 +63,7 @@ for email, name in to_emails.items():
         part['Content-Disposition'] = 'attachment; filename="{}"'.format(os.path.basename(file))
         message.attach(part)
 
-    # Enviar correo
+    # Send email
     smtpObj.sendmail('darialternative@gmail.com', 
                         email, 
                         message.as_string())
@@ -66,5 +71,5 @@ for email, name in to_emails.items():
     # Confirmation message
     print ("Correo enviado a {}".format (name))
 
-# Cerrar conexión
+# Close connection
 smtpObj.quit()

@@ -1,5 +1,10 @@
 #! python3
 
+"""
+Code for my youtube course: Python emails.
+Youtube chanel (in spanish): https://www.youtube.com/channel/UCXWTlKzN_udf9LGqlDsuByg
+"""
+
 import smtplib, os
 
 from email.mime.multipart import MIMEMultipart
@@ -13,17 +18,17 @@ to_emails = {
     "darialternative@gmail.com": "Dari",
 }
 
-# Conectarse al servidor y puerto
+# Contect to smtp server and port
 smtpObj = smtplib.SMTP ('smtp.gmail.com', 587)
 
 # Send hello to smtp
 smtpObj.ehlo()
 
-# Activar método de encriptación
+# Active encriptation
 smtpObj.starttls()
 
-# Iniciar sesión
-smtpObj.login('darialternative@gmail.com', 'AliciaParadoxa1999x3')
+# Login
+smtpObj.login ("your_email@gmail.com", "your_password")
 
 # Loop for each email in list
 for email, name in to_emails.items(): 
@@ -38,7 +43,7 @@ for email, name in to_emails.items():
     text_part = "Rastrea tu pedido!"
 
     # Get html part from template
-    template_path = "python emails 8 | Enviar correos HTML |/email_template_delivery.html"
+    template_path = "email_template_delivery.html"
     template_file = open(template_path, "r")
     html_part = template_file.read()
     html_part = html_part.replace ("[name]", name)
@@ -52,7 +57,7 @@ for email, name in to_emails.items():
     message.attach (part1)
     message.attach (part2)
 
-    # Enviar correo
+    # Send full email
     smtpObj.sendmail('darialternative@gmail.com', 
                         email, 
                         message.as_string())
@@ -60,5 +65,5 @@ for email, name in to_emails.items():
     # Confirmation message
     print ("Correo enviado a {}".format (name))
 
-# Cerrar conexión
+# Close connection
 smtpObj.quit()

@@ -1,18 +1,23 @@
 #! pyhton3
 
+"""
+Code for my youtube course: Python emails.
+Youtube chanel (in spanish): https://www.youtube.com/channel/UCXWTlKzN_udf9LGqlDsuByg
+"""
+
 import imapclient, pyzmail, imaplib, os
 
 # Update the number of bytes to use in the program
 imaplib._MAXLINE = 10000000
 
 # Folder to save attatchment files
-folder_download = "python emails 7 | Descargar archivos adjuntos en correos |/files"
+folder_download = "files"
 
 # Contect to imap server 
 imapObj = imapclient.IMAPClient ("imap.gmail.com", ssl=True)
 
 # Login to email account
-imapObj.login ("darialternative@gmail.com", "AliciaParadoxa1999x3")
+imapObj.login ("your_email@gmail.com", "your_password")
 
 # Use inbox folder
 imapObj.select_folder ("INBOX", readonly=True)
