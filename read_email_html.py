@@ -41,12 +41,17 @@ num_seguimiento = soup.select ("b:nth-child(5)")[0]
 # num_seguimiento = soup.select ("p ~ b")[0]
 # num_seguimiento = soup.select ("main b")[1]
 
+# Get link main button
+main_button = soup.select ("a.main_button")[0]
 
 # print (html)
+
 # print (num_seguimiento)
 print (num_seguimiento.getText())
 
-print ("\n")
+print (main_button.attrs["href"])
+
+
 
 imapObj.logout()
 
