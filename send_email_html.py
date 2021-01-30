@@ -32,13 +32,13 @@ for email, name in to_emails.items():
     message = MIMEMultipart('alternative')
     message["From"] = "darialternative@gmail.com"
     message["To"] = email
-    message["Subject"] = "Email Example HTML"
+    message["Subject"] = "Tu pedido está en camino ;)"
 
     # Text part of trhe email
-    text_part = "Hello, suscribe to my youtube chanel!"
+    text_part = "Rastrea tu pedido!"
 
     # Get html part from template
-    template_path = "python emails 8 | Enviar correos HTML |/email_template_simple.html"
+    template_path = "python emails 8 | Enviar correos HTML |/email_template_delivery.html"
     template_file = open(template_path, "r")
     html_part = template_file.read()
     html_part = html_part.replace ("[name]", name)
